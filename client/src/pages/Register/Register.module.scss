@@ -1,0 +1,59 @@
+.content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+
+    -webkit-user-select: none;
+    user-select: none;
+}
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: #00000076;
+    border-radius: 2rem;
+    padding: 3rem 5rem;
+    .brand {
+       display: flex;
+       align-items: center;
+       gap: 1rem;
+       justify-content: center;
+       img {
+        height: 5rem;
+        border-radius: 0.8rem;
+       } 
+       h1 {
+        color: white;
+       }
+    }
+    input {
+        background-color: transparent;
+        padding: 1rem;
+        border: 0.1rem solid #4e0eff;
+        width: 100%;
+        font-size: 1rem;
+        color: white;
+        width: 100%;
+        border-radius: 0.4rem;
+    }
+    button {
+        color: white;
+        padding: 1rem 2rem;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 0.4rem;
+        text-transform: uppercase;
+    }
+    span {
+        color: white;
+        text-transform: uppercase;
+        a {
+            text-transform: none;
+            font-weight: bold;
+        }
+    }
+}
