@@ -1,5 +1,5 @@
 import { toast, ToastOptions } from "react-toastify";
-import { defaultToastOptions } from "@/constant";
+import { defaultToastOptions } from "@/config/constant";
 
 export const useTotoasts = (options: ToastOptions = defaultToastOptions) => {
   return {
