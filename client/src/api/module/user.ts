@@ -6,9 +6,9 @@ export const createAccount = (data: CreateAccountReq) => {
 };
 
 export const login = (data: LoginReq) => {
-  return request.post("/api/user/create", { data });
+  return request.post("/api/user/login", { data });
 };
 
 export const setAvatar = (data: SetAvatarReq) => {
-  return request.post<{image: string}>("/api/user/avatar", { data });
+  return request.post<{image: string}>("/api/user/update", { data });
 };

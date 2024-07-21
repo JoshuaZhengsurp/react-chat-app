@@ -11,4 +11,5 @@ export interface LoginReq {
 
 export interface SetAvatarReq {
   img: string;
+  [propName in string]: unknown;
 }
