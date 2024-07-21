@@ -5,9 +5,10 @@ import { toToastError } from "@/utils/toast";
 import { setAvatar } from "@/api/module/user";
 import Logo from "@/assets/logov2.png";
 import { Loading } from "@/components/Loading";
+import { AxiosError } from "axios";
 
 export default function Avatar() {
-  const api = "https://api.multiavatar.com/";
+  // const api = "https://api.multiavatar.com/";
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [selectedAvatar, setSelectAvatar] = useState<number>();
@@ -17,13 +18,24 @@ export default function Avatar() {
     if (selectedAvatar === undefined) {
       toToastError("Please select an avatar");
     } else {
-      const user = JSON.parse(localStorage.getItem("chat-app-user") || "");
-      const res = await setAvatar({ img: avatarList[selectedAvatar] });
-      if (res.result === 1) {
-        user.isAvatarImageSet = true;
-        user.avatarImage = res.data!.image;
-        localStorage.setItem("chat-app-user", JSON.stringify(user));
-        navigate("/");
+      const user = JSON.parse(localStorage.getItem("chat-app-user") || "{}");
+      try {
+        const res = await setAvatar({ img: avatarList[selectedAvatar] });
+        if (res.result === 1) {
+          user.isAvatarImageSet = true;
+          user.avatarImage = res.data!.image;
+          localStorage.setItem("chat-app-user", JSON.stringify(user));
+          navigate("/");
+        } else {
+          throw Error("");
+        }
+      } catch (err) {
+        console.log("hello", (err as string) || "set avatar success");
+        toToastError(
+          (err as AxiosError)?.message ||
+            (err as string) ||
+            "set avatar success"
+        );
       }
     }
   };
@@ -43,6 +55,7 @@ export default function Avatar() {
         });
         data.push(Logo);
       }
+      console.log('data', data);
       setAvatarList(data);
       setIsLoading(false);
     };
