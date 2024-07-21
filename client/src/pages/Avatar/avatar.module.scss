@@ -15,7 +15,7 @@
 .title {
     h1 {
         color: white;
-        font-size: 1.5rem;
+        font-size: 2.5rem;
     }
 }
 .avatar-list {
@@ -28,13 +28,28 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        transition: 1s ease-in-out;
+        transition: 0.5s ease-in-out;
         img {
             height: 6rem;
             border-radius: 50%;
         }
     }
     .selected {
-        border: 0.4rem solid #521de280;
+        border: 0.4rem solid #521de2;
+    }
+}
+.submit-btn {
+    background-color: #997af0;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0.4rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: 0.5s ease-in-out;
+    &:hover {
+        background-color: #551cf0f0;
     }
 }

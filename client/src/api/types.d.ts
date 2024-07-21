@@ -8,3 +8,7 @@ export interface LoginReq {
   email: string;
   password: string;
 }
+
+export interface SetAvatarReq {
+  img: string;
+}
