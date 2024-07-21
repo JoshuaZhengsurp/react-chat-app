@@ -1,31 +1,29 @@
-import { ChangeEvent, FormEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "@/assets/logov2.png";
-import style from "./Register.module.scss";
+import style from "./login.module.scss";
 import { toToast, toToastError, toToastSuccess } from "@/utils/toast";
-import { createAccount } from "@/api/module/user";
+import { login } from "@/api/module/user";
 
-interface RigisterForm {
-  username: string;
+interface LoginForm {
   email: string;
   password: string;
-  confirmPassword?: string;
 }
 
-export default function Register() {
-  const [formInfo, setFormInfo] = useState<RigisterForm>({
-    username: "",
+export default function Login() {
+  const [formInfo, setFormInfo] = useState<LoginForm>({
     email: "",
     password: "",
-    confirmPassword: "",
   });
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     if (handleValidation()) {
       try{
-        const { email, password, username } = formInfo;
-        const res = await createAccount({ password, email, username });
+        const { email, password } = formInfo;
+        const res = await login({ password, email });
         if(res.result === 1) {
           toToastSuccess('success create account');
         } else {
@@ -42,38 +40,35 @@ export default function Register() {
     }
   };
   const handleValidation = (): boolean => {
-    const { password, confirmPassword, username, email } = formInfo;
-    if (username.length < 3 || username.length > 12) {
-      toToast("error", "Username should be between 3 and 12 characters");
-      return false;
-    }
+    const { password, email } = formInfo;
     if (!email) {
       toToast("error", "Email is required");
       return false;
     }
-    if (password !== confirmPassword) {
-      toToast("error", "Password and confirm password should be same.");
+    if (!password) {
+      toToast("error", "password is required");
       return false;
     }
     return true;
   };
 
+  // todo: 需要做路由守卫和重定向
+  useEffect(() => {
+    if(localStorage.getItem('chat-app-user')) {
+      navigate('/');
+    }
+  }, [])
+
   return (
     <div className={style["content"]}>
       <form
-        className={style["register-form"]}
+        className={style["login-form"]}
         onSubmit={(e) => handleSubmit(e)}
       >
         <div className={style["brand"]}>
           <img src={Logo} alt="" />
           <h1>JOSHUA</h1>
         </div>
-        <input
-          type="text"
-          placeholder="Username"
-          name="username"
-          onChange={(e) => handleChange(e)}
-        />
         <input
           type="email"
           placeholder="Email"
@@ -86,15 +81,9 @@ export default function Register() {
           name="password"
           onChange={(e) => handleChange(e)}
         />
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          name="confirmPassword"
-          onChange={(e) => handleChange(e)}
-        />
-        <button type="submit">Create User</button>
+        <button type="submit">Login</button>
         <span>
-          Already have an account ? <Link to="/login">Login</Link>
+          Don't have an account ? <Link to="/register">Register</Link>
         </span>
       </form>
     </div>

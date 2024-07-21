@@ -8,9 +8,9 @@ import type {
 } from "axios";
 
 export interface Response<T> {
-  code: number;
-  data: T;
-  message: string;
+  msg: string;
+  result: number;
+  data?: T;
 }
 export interface RequestInterceptors<T> {
   // 请求拦截

@@ -2,7 +2,7 @@ import { ToastOptions } from "react-toastify";
 
 // https://fkhadra.github.io/react-toastify/api/toast
 export const defaultToastOptions: ToastOptions = {
-    position: "bottom-right",
+    position: "top-right",
     autoClose: 4000,
     pauseOnHover: false,
     pauseOnFocusLoss: false,

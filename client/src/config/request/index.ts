@@ -1,12 +1,15 @@
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import config, {
   defaultRequestInterceptor,
   defaultResponseInterceptorRes,
   cancelAllRequest,
   cancelRequest,
 } from "./defaultConfig";
-import { AxiosConfig, Response } from "./type";
+import { Response } from "./type";
 import { toToastError } from "@/utils/toast";
+/**
+ * @todo 有些过度封装了，需要简洁下
+ */
 
 function useRequest(): AxiosInstance {
   const service = axios.create({
@@ -35,17 +38,17 @@ function useRequest(): AxiosInstance {
 
 const service = useRequest();
 const request = {
-  get: <T = any>(option: AxiosConfig) => {
-    return service({ method: "get", ...option }) as Promise<Response<T>>;
+  get: <T = any>(url: string, option?: AxiosRequestConfig) => {
+    return service({ method: "get", url, ...option }) as Promise<Response<T>>;
   },
-  post: <T = any>(option: AxiosConfig) => {
-    return service({ method: "post", ...option }) as Promise<Response<T>>;
+  post: <T = any>(url: string, option?: AxiosRequestConfig) => {
+    return service({ method: "post", url, ...option }) as Promise<Response<T>>;
   },
-  delete: <T = any>(option: AxiosConfig) => {
-    return service({ method: "delete", ...option }) as Promise<Response<T>>;
+  delete: <T = any>(url: string, option?: AxiosRequestConfig) => {
+    return service({ method: "delete", url, ...option }) as Promise<Response<T>>;
   },
-  put: <T = any>(option: AxiosConfig) => {
-    return service({ method: "put", ...option }) as Promise<Response<T>>;
+  put: <T = any>(url: string, option?: AxiosRequestConfig) => {
+    return service({ method: "put", url, ...option }) as Promise<Response<T>>;
   },
   cancelRequest: (url: string | string[]) => {
     return cancelRequest(url);
