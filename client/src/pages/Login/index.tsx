@@ -55,9 +55,9 @@ export default function Login() {
   // todo: 需要做路由守卫和重定向
   useEffect(() => {
     if(localStorage.getItem('chat-app-user')) {
-      navigate('/');
+      // navigate('/');
     }
-  }, [])
+  }, [navigate])
 
   return (
     <div className={style["content"]}>

@@ -1,0 +1,30 @@
+.contain {
+    display: grid;
+    grid-template-columns: 10% 75% 15%;
+    background-color: #080420;
+    height: 100%;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    img {
+        height: 2rem;
+    }
+    h3 {
+        color: white;
+        text-transform: uppercase;
+    }
+}
+
+.contacts {
+    height: 100%;
+    display: flex;
+    overflow: auto;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.8rem;
+    
+}

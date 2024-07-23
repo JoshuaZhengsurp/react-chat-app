@@ -10,7 +10,7 @@ model User {
   username   String   @db.VarChar(24)
   email      String   @unique
   password   String
-  avator     String?  @default("")
+  avatar     String?  @default("")
   role       Int      @default(0)
   createTime DateTime @default(dbgenerated("NOW()")) @db.DateTime
   updateTime DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)

@@ -6,6 +6,7 @@ import { setAvatar } from "@/api/module/user";
 import Logo from "@/assets/logov2.png";
 import { Loading } from "@/components/Loading";
 import { AxiosError } from "axios";
+import { CHAT_APP_USER } from "@/config/constant";
 
 export default function Avatar() {
   // const api = "https://api.multiavatar.com/";
@@ -18,13 +19,13 @@ export default function Avatar() {
     if (selectedAvatar === undefined) {
       toToastError("Please select an avatar");
     } else {
-      const user = JSON.parse(localStorage.getItem("chat-app-user") || "{}");
+      const user = JSON.parse(localStorage.getItem(CHAT_APP_USER) || "{}");
       try {
         const res = await setAvatar({ img: avatarList[selectedAvatar] });
         if (res.result === 1) {
           user.isAvatarImageSet = true;
           user.avatarImage = res.data!.image;
-          localStorage.setItem("chat-app-user", JSON.stringify(user));
+          localStorage.setItem(CHAT_APP_USER, JSON.stringify(user));
           navigate("/");
         } else {
           throw Error("");
@@ -55,7 +56,7 @@ export default function Avatar() {
         });
         data.push(Logo);
       }
-      console.log('data', data);
+      console.log("data", data);
       setAvatarList(data);
       setIsLoading(false);
     };
