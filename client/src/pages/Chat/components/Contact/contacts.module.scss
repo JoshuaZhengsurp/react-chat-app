@@ -1,19 +1,23 @@
 .contain {
-    display: grid;
-    grid-template-rows: 10% 75% 15%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    // grid-template-rows: 10% 75% 15%;
     background-color: #080420;
     height: 100%;
-    width: 20rem;
+    min-width: 20rem;
 }
 
 .brand {
+    height: 12.5%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
     img {
-        height: 2rem;
+        height: 2.5rem;
+        border-radius: 0.3rem;
     }
     h3 {
         color: white;
@@ -31,6 +35,7 @@
     gap: 0.8rem;
     transition: 0.5s ease-in-out;
     .contact-item {
+        cursor: pointer;
         -webkit-user-select: none;
         user-select: none;
         background-color: #3c3a4e;
@@ -58,20 +63,5 @@
             width: 0.1rem;
             border-radius: 1rem;
         }
-    }
-}
-.user-info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.8rem;
-    background-color: #0d0d30;
-    img {
-        height: 4rem;
-        border-radius: 50%;
-    }
-    span {
-        font-size: 1.2rem;
-        font-weight: bold;
     }
 }

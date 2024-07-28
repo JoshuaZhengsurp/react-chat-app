@@ -1,0 +1,50 @@
+.setting {
+    padding: 0.8rem;
+    height: 15%;
+    background-color: #0d0d30;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    .user-info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.8rem;
+
+        img {
+            height: 4rem;
+            border-radius: 50%;
+        }
+
+        span {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+        }
+    }
+
+    transition: all 0.5s ease-in;
+}
+
+.setting-list {
+    overflow: auto;
+    &-item {
+        height: 3rem;
+        width: 100%;;
+        text-align: center;
+        line-height: 3rem;
+        font-size: 1.25rem;
+        &:hover {
+            background-color: #3c3a4e;
+        }
+    }
+    &::-webkit-scrollbar {
+        width: 0.2rem;
+        &-thumb {
+            background-color: #ffffff39;
+            width: 0.1rem;
+            border-radius: 1rem;
+        }
+    }
+}

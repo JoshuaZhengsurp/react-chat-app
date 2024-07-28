@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+
+import { Setting } from "../Setting";
+
 import logo from "@/assets/logov2.png";
 import style from "./contacts.module.scss";
 
@@ -50,10 +53,7 @@ export const Contact: React.FC<ContactProps> = ({ contacts, currentUser, change 
               );
             })}
           </div>
-          <div className={style["user-info"]}>
-            <img src={currentUser.avatar} alt="avatar" />
-            <span>{currentUser.username}</span>
-          </div>
+          <Setting/>
         </div>
       )}
     </>
