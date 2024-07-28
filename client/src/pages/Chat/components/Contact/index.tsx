@@ -5,9 +5,10 @@ import style from "./contacts.module.scss";
 interface ContactProps {
   contacts: any[];
   currentUser: any;
+  change: (chat: any)=>void;
 }
 
-export const Contact: React.FC<ContactProps> = ({ contacts, currentUser }) => {
+export const Contact: React.FC<ContactProps> = ({ contacts, currentUser, change }) => {
   const [currentUserName, setCurrentUserName] = useState("");
   const [currentUserImage, setCurrentUserImage] = useState("");
   const [currentSelected, setCurrentSelected] = useState(-1);
@@ -20,7 +21,10 @@ export const Contact: React.FC<ContactProps> = ({ contacts, currentUser }) => {
     }
   }, [currentUser]);
 
-  const changeCurrentChat = (index: number, contact: any) => {};
+  const changeCurrentChat = (index: number, contact: any) => {
+    setCurrentSelected(index);
+    change(contact);
+  };
 
   return (
     <>
@@ -34,28 +38,21 @@ export const Contact: React.FC<ContactProps> = ({ contacts, currentUser }) => {
             {contacts.map((item, index) => {
               return (
                 <div
-                  className={`contact-item ${
+                  className={`${style["contact-item"]} ${
                     index === currentSelected ? style["selected"] : ""
                   }`}
                   key={item?.id || index}
+                  onClick={()=>changeCurrentChat(index, item)}
                 >
-                  <div className={style["contact-avatar"]}>
-                    <img src={item.avatar} alt="avatar" />
-                  </div>
-                  <div className={style["contact-username"]}>
-                    <span>{item.username}</span>
-                  </div>
+                  <img src={item.avatar} alt="avatar" />
+                  <span>{item.username}</span>
                 </div>
               );
             })}
           </div>
           <div className={style["user-info"]}>
-            <div className={style["user-avatar"]}>
-              <img src={currentUser.avatar} alt="avatar" />
-            </div>
-            <div className={style["user-username"]}>
-              <span>{currentUser.username}</span>
-            </div>
+            <img src={currentUser.avatar} alt="avatar" />
+            <span>{currentUser.username}</span>
           </div>
         </div>
       )}

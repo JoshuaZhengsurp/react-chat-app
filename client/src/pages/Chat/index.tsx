@@ -10,6 +10,7 @@ export default function Chat() {
   const navigate = useNavigate();
   const [contacts, setContacts] = useState([]);
   const [currentUser, setCurrentUser] = useState<any>(undefined);
+  const [currentChat, setCurrentChat] = useState<any>(undefined);
 
   /**
    * @todo 路由守卫，鉴权
@@ -42,11 +43,18 @@ export default function Chat() {
       initChatItem();
     }
   }, [currentUser]);
+  
+  const handleChatChange = (chat: any) => {
+    setCurrentChat(chat);
+  }
 
   return (
     <>
       <div className={style["content"]}>
-        <Contact contacts={contacts} currentUser={currentUser}></Contact>
+        <Contact 
+          contacts={contacts} 
+          currentUser={currentUser} 
+          change={handleChatChange} />
       </div>
     </>
   );
