@@ -14,39 +14,6 @@
     justify-content: flex-start;
 }
 
-.emojo {
-    position: relative;
-    .smile-svg {
-        width: 1.5rem;
-        height: 1.5rem;
-        bottom: 0;
-    }
-    .emojo-picker {
-        position: absolute;
-        left: 2rem;
-        bottom: 0;
-        background-color: #080420;
-        border: #9186f3 1px solid;
-        box-shadow: 0 2px 5px #9186f3;
-        .emoji-group::before {
-            background-color: #080420;
-        }
-        button {
-            padding: 0;
-            border: none;
-            outline: none;
-        }
-        input {
-            background-color: #080420;
-            border: #3c3a4e 1px solid;
-            color: white;
-        }
-        h2 {
-            background-color: #080420;
-        }
-    }
-}
-
 .input-content {
     width: 100%;
     height: 80%;
@@ -78,5 +45,9 @@
 
     &:focus {
         border: 1px #9186f3 solid;
+    }
+
+    svg {
+        transform: translate(2px, 2px);
     }
 }

@@ -1,36 +1,10 @@
-import React, { memo, useState } from "react";
+import React, { useState } from "react";
 
-import Picker, { EmojiClickData } from "emoji-picker-react";
 import { IoMdSend } from "react-icons/io";
-import { BsEmojiSmileFill } from "react-icons/bs";
+import { EmojiPicker } from "../components/EmojiPicker";
 
 import style from "./input.module.scss";
-
-interface EmojoPickerProps {
-  show: boolean;
-  handleClick: () => void;
-  handleSelected: (emoji: EmojiClickData) => void;
-}
-
-// TODO: 避免Picker重新渲染
-const EmojoPicker: React.FC<EmojoPickerProps> = memo(
-  ({ show, handleClick, handleSelected }) => {
-    return (
-      <div className={style["emojo"]}>
-        <BsEmojiSmileFill
-          className={style["smile-svg"]}
-          onClick={handleClick}
-        />
-        {show && (
-          <Picker
-            className={style["emojo-picker"]}
-            onEmojiClick={handleSelected}
-          />
-        )}
-      </div>
-    );
-  }
-);
+import { EmojiClickData } from "emoji-picker-react";
 
 export const MessageInput = () => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -45,9 +19,7 @@ export const MessageInput = () => {
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.value) {
-      setMessage(event.target.value);
-    }
+    setMessage(event.target.value);
   };
 
   const sendMessage = (event: React.MouseEvent, msg: string) => {
@@ -62,7 +34,7 @@ export const MessageInput = () => {
   return (
     <div className={style["contain"]}>
       <div className={style["tools-bar"]}>
-        <EmojoPicker
+        <EmojiPicker
           show={showEmojiPicker}
           handleClick={handleEmojiPickerShow}
           handleSelected={handleEmojiSelected}

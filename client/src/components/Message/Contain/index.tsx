@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useUserStore } from "@/store/module/user";
 import style from "./contain.module.scss";
 
@@ -8,68 +8,80 @@ enum positionEnum {
 }
 
 type MessageItem = {
-  userId: number;
-  msg: string;
-  id: number;
-  timestamp: number;
+  id?: number
+  senderId: number
+  recevier: number
+  message: string
+  type: number
+  sendTime?: number,
 };
 interface MessageProps {
-  key: number;
   message: MessageItem;
   isContinuous: boolean;
   position: positionEnum;
 }
 
-const TEST_DATA = [
+const TEST_DATA: MessageItem[] = [
   {
-    userId: 1,
-    msg: "sdjhfaf",
+    senderId: 1,
+    message: "sdjhfaf",
     id: 1,
-    timestamp: 123123123,
+    sendTime: 123123123,
+    recevier: 1,
+    type: 1,
   },
   {
-    userId: 1,
-    msg: "sdjhfaf",
+    senderId: 1,
+    message: "sdjhfaf",
     id: 2,
-    timestamp: 123123123,
+    sendTime: 123123123,
+    recevier: 1,
+    type: 1,
   },
   {
-    userId: 2,
-    msg: "sdjhfaf",
+    senderId: 2,
+    message: "sdjhfaf",
     id: 3,
-    timestamp: 123123123,
+    sendTime: 123123123,
+    recevier: 1,
+    type: 1,
   },
   {
-    userId: 1,
-    msg: "sdjhfaf",
+    senderId: 1,
+    message: "sdjhfaf",
     id: 4,
-    timestamp: 123123123,
+    sendTime: 123123123,
+    recevier: 1,
+    type: 1,
   },
   {
-    userId: 2,
-    msg: "sdjhfaf",
+    senderId: 2,
+    message: "sdjhfaf",
     id: 5,
-    timestamp: 123123123,
+    sendTime: 123123123,
+    recevier: 1,
+    type: 1,
   },
 ];
 
-const Message: React.FC<MessageProps> = ({ message, key }) => {
-  return <div key={key}>{message.msg}</div>;
+const Message: React.FC<MessageProps> = ({ message }) => {
+  return <div>{message.message}</div>;
 };
 
 export const MessageContain = () => {
   const userInfo = useUserStore((state) => state.userInfo);
   return (
-    <div>
+    <div  className={style["contain"]}>
       {TEST_DATA.map((item) => (
-        <Message
-          message={item}
-          key={item.id}
-          isContinuous={false}
-          position={
-            item.userId === userInfo.id ? positionEnum.RIGHT : positionEnum.LEFT
-          }
-        />
+        <Fragment key={item.id}>
+          <Message
+            message={item}
+            isContinuous={false}
+            position={
+              item.senderId === userInfo.id ? positionEnum.RIGHT : positionEnum.LEFT
+            }
+          />
+        </Fragment>
       ))}
     </div>
   );

@@ -16,6 +16,18 @@ model User {
   updateTime DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
 }
 
+// TODO：优化查找
+// 发送者，room类型，具体消息，发送时间, 接收者
+// type：0
+model Message {
+  id       Int      @id @default(autoincrement())
+  sender   Int
+  recevier Int
+  message  String
+  type     Int
+  sendTime DateTime @default(dbgenerated("NOW()")) @db.DateTime
+}
+
 generator client {
   provider = "prisma-client-js"
 }
