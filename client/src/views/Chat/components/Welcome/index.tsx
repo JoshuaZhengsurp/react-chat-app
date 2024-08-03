@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
+import React from "react";
 import style from "./welcome.module.scss";
 import welcomeImg from "@/assets/robot.gif";
-import { ChatContext } from "@/views/Chat";
+import { useUserStore } from "@/store";
 
 export const Welcome: React.FC = () => {
-  const { currentUser } = useContext(ChatContext);
+  const userInfo = useUserStore((state)=>state.userInfo);
   
   return (
     <div className={style["contain"]}>
       <img src={welcomeImg} alt="welcome" />
       <h1>
-        Welcome, <span>{currentUser?.username || ''}</span>
+        Welcome, <span>{userInfo?.username || ''}</span>
       </h1>
       <h3>Please select a chat to Start Messaging.</h3>
     </div>

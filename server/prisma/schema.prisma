@@ -28,6 +28,26 @@ model Message {
   sendTime DateTime @default(dbgenerated("NOW()")) @db.DateTime
 }
 
+// type: 0, 用户；1, 群聊
+model Contact {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  roomId      Int      @default(-1)
+  lastMessage String
+  type     Int
+  createTime  DateTime @default(dbgenerated("NOW()")) @db.DateTime
+  updateTime  DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
+}
+
+// 聊天的房间号
+model Room {
+  roomId     Int      @id @default(autoincrement())
+  roomName   String
+  avatar     String?  @default("")
+  createTime DateTime @default(dbgenerated("NOW()")) @db.DateTime
+  updateTime DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
+}
+
 generator client {
   provider = "prisma-client-js"
 }

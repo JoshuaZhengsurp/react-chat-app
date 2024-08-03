@@ -1,7 +1,7 @@
-import React, { memo, useContext, useMemo, useState } from "react";
-import { ChatContext } from "@/views/Chat";
+import React, { memo, useMemo, useState } from "react";
 import style from "./setting.module.scss";
 import { useNavigate } from "react-router-dom";
+import { useUserStore } from "@/store";
 
 interface ProfileProps {
   userInfo?: User;
@@ -37,7 +37,7 @@ const SettingList: React.FC<SettingListProps> = memo(({ settingList }) => {
 });
 
 export const Setting: React.FC = () => {
-  const { currentUser } = useContext(ChatContext);
+  const userInfo = useUserStore((state)=>state.userInfo);
   const [showSettingList, setShowSettingList] = useState(false);
   const naviagete = useNavigate();
 
@@ -69,7 +69,7 @@ export const Setting: React.FC = () => {
       }}
       onBlur={()=>changeShowList(false)}
     >
-      <Profile userInfo={currentUser} click={() => changeShowList()}/>
+      <Profile userInfo={userInfo} click={() => changeShowList()}/>
       {showSettingList && <SettingList settingList={settingList} />}
     </div>
   );

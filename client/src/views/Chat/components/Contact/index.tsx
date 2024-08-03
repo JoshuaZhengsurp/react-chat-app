@@ -4,25 +4,27 @@ import { Setting } from "../Setting";
 
 import logo from "@/assets/logov2.png";
 import style from "./contacts.module.scss";
+import { useUserStore } from "@/store";
 
 interface ContactProps {
   contacts: any[];
-  currentUser: any;
   change: (chat: any)=>void;
 }
 
-export const Contact: React.FC<ContactProps> = ({ contacts, currentUser, change }) => {
+export const Contact: React.FC<ContactProps> = ({ contacts, change }) => {
   const [currentUserName, setCurrentUserName] = useState("");
   const [currentUserImage, setCurrentUserImage] = useState("");
   const [currentSelected, setCurrentSelected] = useState(-1);
 
+  const userInfo = useUserStore((state)=>state.userInfo);
+
   useEffect(() => {
-    if (currentUser) {
+    if (userInfo) {
       // console.log(currentUser, currentUser?.username, currentUser?.avatar);
-      setCurrentUserName(currentUser.username as string);
-      setCurrentUserImage(currentUser.avatar as string);
+      setCurrentUserName(userInfo.username as string);
+      setCurrentUserImage(userInfo.avatar as string);
     }
-  }, [currentUser]);
+  }, [userInfo]);
 
   const changeCurrentChat = (index: number, contact: any) => {
     setCurrentSelected(index);
@@ -53,7 +55,7 @@ export const Contact: React.FC<ContactProps> = ({ contacts, currentUser, change 
               );
             })}
           </div>
-          <Setting/>
+          <Setting />
         </div>
       )}
     </>
