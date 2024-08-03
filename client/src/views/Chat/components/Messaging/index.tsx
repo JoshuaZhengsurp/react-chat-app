@@ -6,14 +6,14 @@ import {
   MessageHeader,
 } from "@/components/Message";
 import { Welcome } from "../Welcome";
-import { ChatContext } from "@/pages/Chat";
+import { ChatContext } from "@/views/Chat";
 import style from "./messaging.module.scss";
 
 export const Messaging = () => {
   const { currentChat } = useContext(ChatContext);
   const isWelcome = useMemo(() => !currentChat, [currentChat]);
 
-  console.log("isWelcome", currentChat);
+  // console.log("isWelcome", currentChat);
 
   return (
     <div className={style["contain"]}>

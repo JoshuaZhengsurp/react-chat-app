@@ -1,5 +1,5 @@
 import React, { memo, useContext, useMemo, useState } from "react";
-import { ChatContext } from "@/pages/Chat";
+import { ChatContext } from "@/views/Chat";
 import style from "./setting.module.scss";
 import { useNavigate } from "react-router-dom";
 

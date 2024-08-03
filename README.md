@@ -22,5 +22,7 @@ TODO
 
 
 展望：
+移动端自适应
+
 electron 桌面端
 react native 支持移动端

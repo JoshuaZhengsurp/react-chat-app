@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import style from "./welcome.module.scss";
 import welcomeImg from "@/assets/robot.gif";
-import { ChatContext } from "@/pages/Chat";
+import { ChatContext } from "@/views/Chat";
 
 export const Welcome: React.FC = () => {
   const { currentUser } = useContext(ChatContext);

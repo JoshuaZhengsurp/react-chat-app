@@ -18,7 +18,7 @@ export const Contact: React.FC<ContactProps> = ({ contacts, currentUser, change 
 
   useEffect(() => {
     if (currentUser) {
-      console.log(currentUser, currentUser?.username, currentUser?.avatar);
+      // console.log(currentUser, currentUser?.username, currentUser?.avatar);
       setCurrentUserName(currentUser.username as string);
       setCurrentUserImage(currentUser.avatar as string);
     }
