@@ -7,8 +7,8 @@ import style from "./contacts.module.scss";
 import { useUserStore } from "@/store";
 
 interface ContactProps {
-  contacts: any[];
-  change: (chat: any)=>void;
+  contacts: Contact[];
+  change: (chat: Contact)=>void;
 }
 
 export const Contact: React.FC<ContactProps> = ({ contacts, change }) => {
@@ -26,7 +26,7 @@ export const Contact: React.FC<ContactProps> = ({ contacts, change }) => {
     }
   }, [userInfo]);
 
-  const changeCurrentChat = (index: number, contact: any) => {
+  const changeCurrentChat = (index: number, contact: Contact) => {
     setCurrentSelected(index);
     change(contact);
   };
@@ -46,11 +46,11 @@ export const Contact: React.FC<ContactProps> = ({ contacts, change }) => {
                   className={`${style["contact-item"]} ${
                     index === currentSelected ? style["selected"] : ""
                   }`}
-                  key={item?.id || index}
+                  key={item?.contactId || index}
                   onClick={()=>changeCurrentChat(index, item)}
                 >
-                  <img src={item.avatar} alt="avatar" />
-                  <span>{item.username}</span>
+                  <img src={ item.contactee?.avatar || item.room?.avatar } alt="avatar" />
+                  <span>{ item?.contactee?.username || item?.room?.roomName }</span>
                 </div>
               );
             })}

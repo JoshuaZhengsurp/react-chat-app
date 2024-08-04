@@ -33,6 +33,7 @@ declare global {
     contacteeId: number;
     message: string;
     createTime: number;
+    // message: string | string[]
   }
 
   interface ChatList {

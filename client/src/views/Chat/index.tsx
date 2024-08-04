@@ -3,7 +3,7 @@ import style from "./chat.module.scss";
 import { getChatItem } from "@/api/module/chat";
 import { Messaging, Contact } from "./components";
 import { CHAT_APP_USER } from "@/config/constant";
-import { mockContact } from "@/config/testData";
+import { mockChatList, mockContact } from "@/mockData/testData";
 import { useUserStore } from "@/store";
 
 type ChatContextType = {
@@ -39,11 +39,25 @@ export default function Chat() {
   // todo：判断是否命中本地缓存，不命中则更新数据。
   //  如果聊天数据有更新，会有一个类似“etag”的字段判断，不一致则发送请求获取
   //  期望：使用浏览器的IndexDB存储
-  const getChatItem = async (chatId: string) => {};
+  // const getChatItem = async (chatId: string) => {
 
-  const handleChatChange = (chat: any) => {
-    setCurrentChat(chat);
-    getChatItem(chat.id);
+  // };
+
+  const handleChatChange = async (chat: Contact) => {
+    // setCurrentChat(chat);
+    // const res = await getChatItem(chat.contactId);
+    const res = await new Promise<{data: ChatList}>((resolve)=>{
+      setTimeout(()=>{
+        resolve({
+          data: {
+            contactee: chat.contactee,
+            chat: mockChatList,
+          }
+        })
+      })
+    })
+    setCurrentChat(res.data);
+    console.log(res.data);
   };
 
   useEffect(() => {

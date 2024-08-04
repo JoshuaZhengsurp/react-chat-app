@@ -2,7 +2,7 @@ export const mockContact: Contact[] = [
   {
     contactId: 1,
     type: 0,
-    lastMessage: 'hello',
+    lastMessage: "hello",
     contactee: {
       id: 2,
       email: "3107641910@qq.com",
@@ -16,7 +16,7 @@ export const mockContact: Contact[] = [
   {
     contactId: 2,
     type: 0,
-    lastMessage: 'hello',
+    lastMessage: "hello",
     contactee: {
       id: 3,
       email: "3107641910@qq.com",
@@ -30,7 +30,7 @@ export const mockContact: Contact[] = [
   {
     contactId: 3,
     type: 0,
-    lastMessage: 'hello',
+    lastMessage: "hello",
     contactee: {
       id: 4,
       email: "3107641910@qq.com",
@@ -44,7 +44,7 @@ export const mockContact: Contact[] = [
   {
     contactId: 4,
     type: 0,
-    lastMessage: 'hello',
+    lastMessage: "hello",
     contactee: {
       id: 5,
       email: "3107641910@qq.com",
@@ -58,7 +58,7 @@ export const mockContact: Contact[] = [
   {
     contactId: 5,
     type: 0,
-    lastMessage: 'hello',
+    lastMessage: "hello",
     contactee: {
       id: 6,
       email: "3107641910@qq.com",
@@ -72,7 +72,7 @@ export const mockContact: Contact[] = [
   {
     contactId: 6,
     type: 0,
-    lastMessage: 'hello',
+    lastMessage: "hello",
     contactee: {
       id: 7,
       email: "3107641910@qq.com",
@@ -86,7 +86,7 @@ export const mockContact: Contact[] = [
   {
     contactId: 7,
     type: 0,
-    lastMessage: 'hello',
+    lastMessage: "hello",
     contactee: {
       id: 8,
       email: "3107641910@qq.com",
@@ -100,7 +100,7 @@ export const mockContact: Contact[] = [
   {
     contactId: 8,
     type: 0,
-    lastMessage: 'hello',
+    lastMessage: "hello",
     contactee: {
       id: 9,
       email: "3107641910@qq.com",
@@ -114,7 +114,7 @@ export const mockContact: Contact[] = [
   {
     contactId: 9,
     type: 0,
-    lastMessage: 'hello',
+    lastMessage: "hello",
     contactee: {
       id: 10,
       email: "3107641910@qq.com",
@@ -128,7 +128,7 @@ export const mockContact: Contact[] = [
   {
     contactId: 10,
     type: 0,
-    lastMessage: 'hello',
+    lastMessage: "hello",
     contactee: {
       id: 11,
       email: "3107641910@qq.com",
@@ -142,7 +142,7 @@ export const mockContact: Contact[] = [
   {
     contactId: 11,
     type: 0,
-    lastMessage: 'hello',
+    lastMessage: "hello",
     contactee: {
       id: 12,
       email: "3107641910@qq.com",
@@ -156,7 +156,7 @@ export const mockContact: Contact[] = [
   {
     contactId: 12,
     type: 0,
-    lastMessage: 'hello',
+    lastMessage: "hello",
     contactee: {
       id: 13,
       email: "3107641910@qq.com",
@@ -166,5 +166,71 @@ export const mockContact: Contact[] = [
     },
     createTime: 1722691137000,
     updateTime: 1722691137000,
+  },
+];
+
+export const mockChatList: ChatItem[] = [
+  {
+    contactId: 1,
+    userId: 1,
+    contacteeId: 2,
+    message: "Hello",
+    createTime: 1722691137000,
+  },
+  {
+    contactId: 2,
+    userId: 2,
+    contacteeId: 1,
+    message: 'Hello',
+    createTime: 1722691137000,
+  },
+  {
+    contactId: 3,
+    userId: 2,
+    contacteeId: 1,
+    message: 'Hello',
+    createTime: 1722691137000,
+  },
+  {
+    contactId: 4,
+    userId: 2,
+    contacteeId: 1,
+    message: 'Hello',
+    createTime: 1722691137000,
+  },
+  {
+    contactId: 5,
+    userId: 1,
+    contacteeId: 2,
+    message: 'Hello',
+    createTime: 1722691137000,
+  },
+  {
+    contactId: 6,
+    userId: 1,
+    contacteeId: 2,
+    message: 'Hello',
+    createTime: 1722691137000,
+  },
+  {
+    contactId: 7,
+    userId: 1,
+    contacteeId: 2,
+    message: 'Hello',
+    createTime: 1722691137000,
+  },
+  {
+    contactId: 8,
+    userId: 2,
+    contacteeId: 1,
+    message: 'Hello',
+    createTime: 1722691137000,
+  },
+  {
+    contactId: 9,
+    userId: 1,
+    contacteeId: 2,
+    message: 'Hello',
+    createTime: 1722691137000,
   },
 ];

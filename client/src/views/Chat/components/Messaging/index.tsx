@@ -11,14 +11,15 @@ import style from "./messaging.module.scss";
 
 export const Messaging = () => {
   const { currentChat } = useContext(ChatContext);
-  const isWelcome = useMemo(() => !currentChat, [currentChat]);
-
-  // console.log("isWelcome", currentChat);
+  const isWelcome = useMemo(
+    () => !Object.keys(currentChat || {}).length,
+    [currentChat]
+  );
 
   return (
     <div className={style["contain"]}>
       <Loading LoadingFC={Welcome} isLoading={isWelcome}>
-        <MessageHeader userInfo={currentChat} />
+        <MessageHeader userInfo={currentChat!.contactee!} />
         {currentChat && (
           <>
             <MessageContain />
