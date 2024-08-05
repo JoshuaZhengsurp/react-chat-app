@@ -6,79 +6,47 @@ enum positionEnum {
   LEFT,
   RIGHT,
 }
-
-type MessageItem = {
-  id?: number
-  senderId: number
-  recevier: number
-  message: string
-  type: number
-  sendTime?: number,
-};
+ 
 interface MessageProps {
-  message: MessageItem;
+  chatItem: ChatItem;
   isContinuous: boolean;
   position: positionEnum;
 }
+interface MessageContainProps {
+  chatRecords: ChatItem[];
+}
 
-const TEST_DATA: MessageItem[] = [
-  {
-    senderId: 1,
-    message: "sdjhfaf",
-    id: 1,
-    sendTime: 123123123,
-    recevier: 1,
-    type: 1,
-  },
-  {
-    senderId: 1,
-    message: "sdjhfaf",
-    id: 2,
-    sendTime: 123123123,
-    recevier: 1,
-    type: 1,
-  },
-  {
-    senderId: 2,
-    message: "sdjhfaf",
-    id: 3,
-    sendTime: 123123123,
-    recevier: 1,
-    type: 1,
-  },
-  {
-    senderId: 1,
-    message: "sdjhfaf",
-    id: 4,
-    sendTime: 123123123,
-    recevier: 1,
-    type: 1,
-  },
-  {
-    senderId: 2,
-    message: "sdjhfaf",
-    id: 5,
-    sendTime: 123123123,
-    recevier: 1,
-    type: 1,
-  },
-];
-
-const Message: React.FC<MessageProps> = ({ message }) => {
-  return <div>{message.message}</div>;
+const Message: React.FC<MessageProps> = ({ chatItem, position }) => {
+  return (
+    <div
+      className={`${style["chat"]} ${
+        position === positionEnum.LEFT ? style["left"] : style["right"]
+      }`}
+    >
+      <img className={style["chat-avatar"]} src={chatItem.avatar} alt="" />
+      <div className={style["chat-item"]}>
+        <div className={style["chat-item-username"]}>{chatItem.userName}</div>
+        <div className={style["chat-item-message"]}>{chatItem.message}</div>
+      </div>
+    </div>
+  );
 };
 
-export const MessageContain = () => {
+export const MessageContain: React.FC<MessageContainProps> = ({
+  chatRecords,
+}) => {
   const userInfo = useUserStore((state) => state.userInfo);
   return (
-    <div  className={style["contain"]}>
-      {TEST_DATA.map((item) => (
-        <Fragment key={item.id}>
+    <div className={style["contain"]}>
+      {chatRecords.map((item) => (
+        <Fragment key={item.contactId}>
           <Message
-            message={item}
+            chatItem={item}
             isContinuous={false}
             position={
-              item.senderId === userInfo.id ? positionEnum.RIGHT : positionEnum.LEFT
+              item.userId === userInfo.id
+                ? positionEnum.RIGHT
+                : positionEnum.LEFT
             }
           />
         </Fragment>

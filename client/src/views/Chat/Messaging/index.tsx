@@ -19,10 +19,10 @@ export const Messaging = () => {
   return (
     <div className={style["contain"]}>
       <Loading LoadingFC={Welcome} isLoading={isWelcome}>
-        <MessageHeader userInfo={currentChat!.contactee!} />
+        <MessageHeader contacteeInfo={currentChat!.contactee!} />
         {currentChat && (
           <>
-            <MessageContain />
+            <MessageContain chatRecords={currentChat.chat!}/>
           </>
         )}
         <MessageInput />

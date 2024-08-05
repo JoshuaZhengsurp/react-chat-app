@@ -30,6 +30,8 @@ declare global {
   interface ChatItem {
     contactId: number;
     userId: number;
+    avatar: string;
+    userName: string;
     contacteeId: number;
     message: string;
     createTime: number;

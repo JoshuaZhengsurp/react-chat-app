@@ -1,7 +1,10 @@
-import React, { createContext, useEffect, useMemo, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
+
+import { Messaging } from "./Messaging";
+import { Contact } from "./Contact";
+
 import style from "./chat.module.scss";
 import { getChatItem } from "@/api/module/chat";
-import { Messaging, Contact } from "./components";
 import { CHAT_APP_USER } from "@/config/constant";
 import { mockChatList, mockContact } from "@/mockData/testData";
 import { useUserStore } from "@/store";
