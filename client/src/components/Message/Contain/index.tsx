@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import moment from "moment";
 import { useUserStore } from "@/store/module/user";
 import style from "./contain.module.scss";
 
@@ -6,7 +7,7 @@ enum positionEnum {
   LEFT,
   RIGHT,
 }
- 
+
 interface MessageProps {
   chatItem: ChatItem;
   isContinuous: boolean;
@@ -25,8 +26,18 @@ const Message: React.FC<MessageProps> = ({ chatItem, position }) => {
     >
       <img className={style["chat-avatar"]} src={chatItem.avatar} alt="" />
       <div className={style["chat-item"]}>
-        <div className={style["chat-item-username"]}>{chatItem.userName}</div>
-        <div className={style["chat-item-message"]}>{chatItem.message}</div>
+        <div
+          className={style["chat-item-username"]}
+          style={{ color: chatItem.theme }}
+        >
+          {chatItem.userName}
+        </div>
+        <div className={style["chat-item-message"]}>
+          <div className={style["detail"]}>{chatItem.message}</div>
+          <div className={style["time"]}>
+            {moment(chatItem.createTime).format("hh:mm")}
+          </div>
+        </div>
       </div>
     </div>
   );

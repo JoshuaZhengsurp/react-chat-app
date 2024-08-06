@@ -35,6 +35,7 @@ declare global {
     contacteeId: number;
     message: string;
     createTime: number;
+    theme?: string;
     // message: string | string[]
   }
 

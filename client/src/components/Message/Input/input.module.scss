@@ -2,7 +2,8 @@
     margin: auto;
     max-width: 40rem;
     width: 80%;
-    min-height: 5rem;
+    min-height: 5.5rem;
+    max-height: 30vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -27,34 +28,35 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 0.1rem solid rgb(70, 78, 78);
-    background-color: #ffffff28;
-    border-radius: 2rem;
     font-size: 1rem;
+    max-height: 20vh !important;
 
     &-style {
         padding: 0 1rem;
         background-color: transparent;
         border-radius: 2rem;
         width: 85%;
+        resize: none;
         height: 100%;
-        border: none;
-
+        border: 0.1rem solid rgb(70, 78, 78);
+        background-color: #ffffff28;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-sizing: border-box; 
         &[type=text]:focus {
-            outline: none;
+            border: 2px #9186f3 solid;
+            // border: /
         }
     }
 
     &-btn {
-        width: 5rem;
-        border-radius: 2rem;
-    }
-
-    &:focus {
-        border: 1px #9186f3 solid;
+        width: 3.1rem;
+        height: 3.1rem;
+        border-radius: 3rem;
+        background-color: #9186f3;
     }
 
     svg {
-        transform: translate(2px, 2px);
+        transform: translate(-2px, 2px);
     }
 }

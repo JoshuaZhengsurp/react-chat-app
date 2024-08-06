@@ -43,13 +43,37 @@
 }
 
 .chat-item {
+    position: relative;
     max-width: 80%;
     padding: 0.5rem 1rem;
     background-color: #212121;
     border-radius: 1rem;
-    &-username
-    &-message{
-
+    text-align: left;
+    &-username {
+        font-size: 0.8rem;
+    }
+    &-message {
+        width: 100%;
+        font-size: 1rem;
+        box-sizing: border-box;
+        .detail {
+            // display: inline-block;
+            width: 100%;
+            word-wrap:break-word; 
+            word-break:break-all; 
+            padding-right: 1.5rem;
+            float: left;
+        }
+        .time {
+            position: absolute;
+            text-align: center;
+            right: 0.35rem;
+            bottom: 0.4rem;
+            float: right;
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: #979797
+        }
     }
 }
 
@@ -58,5 +82,6 @@
 }
 
 .right {
-    justify-content: flex-end;
+    flex-direction: row-reverse;
+    justify-content: end;
 }

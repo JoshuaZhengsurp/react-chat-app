@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import { IoMdSend } from "react-icons/io";
 import { EmojiPicker } from "../components/EmojiPicker";
@@ -19,15 +19,28 @@ export const MessageInput = () => {
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
     setMessage(event.target.value);
   };
 
   const sendMessage = (event: React.MouseEvent, msg: string) => {
     event.preventDefault();
-    if (msg.trim()) {
+    if (msg) {
       // handleSendMessage(msg.trim());
       console.log(msg);
-      setMessage("");
+      setMessage(msg);
+    }
+  };
+
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleInput = () => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
   };
 
@@ -40,10 +53,10 @@ export const MessageInput = () => {
           handleSelected={handleEmojiSelected}
         />
       </div>
-      <form className={style["input-content"]}>
-        <input
+      <div className={style["input-content"]}>
+        <textarea
+          ref={textareaRef}
           className={style["input-content-style"]}
-          type="text"
           placeholder="please input hear"
           value={message}
           onChange={(e) => handleInputChange(e)}
@@ -51,11 +64,12 @@ export const MessageInput = () => {
         <button
           className={style["input-content-btn"]}
           type="submit"
+          title="submit"
           onClick={(e) => sendMessage(e, message)}
         >
           <IoMdSend />
         </button>
-      </form>
+      </div>
     </div>
   );
 };
