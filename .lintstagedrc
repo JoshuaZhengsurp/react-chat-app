@@ -1,4 +1,4 @@
 {
-    "client/src/**/*.(js,jsx,ts,tsx)": "npm run lint",
-    "server/src/**/*.(js,jsx,ts,tsx)": "npm run lint"
+    "client/src/**/*.(js,jsx,ts,tsx)": "npm run lint:cl",
+    "server/src/**/*.(js,jsx,ts,tsx)": "npm run lint:se"
 }
