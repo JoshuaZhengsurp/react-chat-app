@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky",
     "lint-staged": "lint-staged",
     "commitlint": "commitlint --config commitlint.config.js -e -V",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "husky": {
-    "hooks":{
+    "hooks": {
       "pre-commitlint": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
