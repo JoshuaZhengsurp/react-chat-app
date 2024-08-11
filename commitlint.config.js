@@ -1,5 +1,7 @@
-// @doc: https://cz-git.qbb.sh/zh/
-/** @type {import('cz-git').UserConfig} */
+/**
+ * @doc https://cz-git.qbb.sh/zh/
+ * @type {import('cz-git').UserConfig} 
+ */
 
 module.exports = {
   // ignores: [commit => commit.includes("init")],
