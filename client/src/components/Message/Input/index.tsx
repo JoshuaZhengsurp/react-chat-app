@@ -6,41 +6,49 @@ import { EmojiPicker } from "../components/EmojiPicker";
 import style from "./input.module.scss";
 import { EmojiClickData } from "emoji-picker-react";
 
+/**
+ * @todo
+ * bug：1. 表情会直接插入尾部
+ * bug: 2. 选中时会报错
+*/
 export const MessageInput = () => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [message, setMessage] = useState("");
+  const inputRef = useRef<HTMLDivElement>(null);
 
   const handleEmojiPickerShow = () => {
     setShowEmojiPicker(!showEmojiPicker);
   };
 
   const handleEmojiSelected = (emoji: EmojiClickData) => {
-    setMessage(message + emoji.emoji);
-  };
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto';
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    const updatedMessage = (inputRef.current?.innerHTML || '') + emoji.emoji;
+    setMessage(updatedMessage);
+    if (inputRef.current) {
+      inputRef.current.innerText = updatedMessage; // 同步更新input内容
     }
-    setMessage(event.target.value);
   };
 
-  const sendMessage = (event: React.MouseEvent, msg: string) => {
-    event.preventDefault();
+  const handleInputChange = (e: React.FormEvent<HTMLDivElement>) => {
+    if (e.currentTarget) {
+      // console.log('handleInputChange', e.currentTarget.innerText, message);
+      setMessage(e.currentTarget.innerText);
+    }
+  };
+
+  // 监听Enter键发送消息
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      sendMessage(message);
+    }
+  };
+
+  const sendMessage = (msg: string) => {
     if (msg) {
-      // handleSendMessage(msg.trim());
       console.log(msg);
-      setMessage(msg);
-    }
-  };
-
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-
-  const handleInput = () => {
-    if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto';
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+      // push msg
+      setMessage("");
+      inputRef.current && (inputRef.current.innerHTML = "");
     }
   };
 
@@ -54,18 +62,20 @@ export const MessageInput = () => {
         />
       </div>
       <div className={style["input-content"]}>
-        <textarea
-          ref={textareaRef}
+        <div
           className={style["input-content-style"]}
-          placeholder="please input hear"
-          value={message}
-          onChange={(e) => handleInputChange(e)}
+          contentEditable
+          suppressContentEditableWarning
+          ref={inputRef}
+          data-placeholder="Message"
+          onInput={(e)=>handleInputChange(e)}
+          onKeyDown={handleKeyDown}
         />
         <button
           className={style["input-content-btn"]}
           type="submit"
           title="submit"
-          onClick={(e) => sendMessage(e, message)}
+          onClick={() => sendMessage(message)}
         >
           <IoMdSend />
         </button>
