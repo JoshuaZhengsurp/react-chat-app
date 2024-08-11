@@ -66,6 +66,7 @@ module.exports = {
       { value: 'ci',        name:  'ci:       🎡  Changes to our CI configuration files and scripts', emoji: '🎡', },
       { value: 'chore',     name:  "chore:    🔨  Other changes that don't modify src or test files", emoji: '🔨', },
       { value: 'revert',    name:  'revert:   ⏪️  Reverts a previous commit', emoji: '⏪️', },
+      { value: 'config',    name:  'config:   ⚙️  Changes to project configuration', emoji: '⚙️'}, 
       // { value: "特性", name: "特性:   🚀  新增功能", emoji: "🚀" },
       // { value: "修复", name: "修复:   🧩  修复缺陷", emoji: "🧩" },
       // { value: "文档", name: "文档:   📚  文档变更", emoji: "📚" },

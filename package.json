@@ -7,12 +7,19 @@
     "prepare": "husky",
     "lint-staged": "lint-staged",
     "commitlint": "commitlint --config commitlint.config.js -e -V",
+    "commit": "czg",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "husky": {
     "hooks": {
       "pre-commitlint": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-git",
+      "useEmoji": true
     }
   },
   "lint-staged": {
@@ -35,6 +42,8 @@
   "devDependencies": {
     "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.2.2",
+    "cz-git": "^1.9.4",
+    "czg": "^1.9.4",
     "husky": "^9.1.4",
     "lint-staged": "^15.2.8"
   }

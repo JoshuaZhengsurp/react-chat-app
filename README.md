@@ -10,6 +10,7 @@
     nestjs、(auth)、sockio、redis、prisma、docket
 
 TODO
+
 1. 前端静态页面
 2. 后端常规crud接口
 3. 用户鉴权
@@ -19,7 +20,8 @@ TODO
 7. 兼容图片/音频
 8. 使用webRtc实现音视频聊天
 9. 配合web-worker/wasm优化图像计算
-10. .lintstaged 和 eslint 提交前规范代码
+10. husky && commitlint 配置
+11. .lintstaged 和 eslint 提交前规范代码
 
 展望：
 移动端自适应
