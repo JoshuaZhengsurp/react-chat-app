@@ -1,0 +1,4 @@
+{
+    "client/src/**/*.(js,jsx,ts,tsx)": "npm run lint",
+    "server/src/**/*.(js,jsx,ts,tsx)": "npm run lint"
+}

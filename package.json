@@ -4,7 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prepare": "husky install",
+    "lint-staged": "lint-staged",
+    "commitlint": "commitlint --config commitlint.config.js -e -V",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "husky": {
+    "hooks":{
+      "pre-commitlint": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "client/src/**/*.(js,jsx,ts,tsx)": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "server/src/**/*.(js,jsx,ts,tsx)": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -12,5 +31,11 @@
   "dependencies": {
     "express": "^4.19.2",
     "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.4.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "husky": "^9.1.4",
+    "lint-staged": "^15.2.8"
   }
 }
