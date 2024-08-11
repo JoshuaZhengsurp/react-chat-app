@@ -5,6 +5,7 @@ import { SocketModule } from './socket/socket.module';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './db/prisma.module';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { PrismaModule } from './db/prisma.module';
     UserModule,
     ConfigModule.forRoot({ envFilePath: ['.env'] }),
     PrismaModule,
+    ChatModule,
     // MongooseModule.forRoot()
   ],
   controllers: [AppController],

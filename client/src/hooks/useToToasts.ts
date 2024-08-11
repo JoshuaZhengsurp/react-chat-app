@@ -1,7 +1,7 @@
 import { toast, ToastOptions } from "react-toastify";
-import { defaultToastOptions } from "@/config/constant";
+import { DEFAULT_TOAST_OPTIONS } from "@/config/constant";
 
-export const useTotoasts = (options: ToastOptions = defaultToastOptions) => {
+export const useTotoasts = (options: ToastOptions = DEFAULT_TOAST_OPTIONS) => {
   return {
     info: (content: string) => toast.info(content, options),
     error: (content: string) => toast.error(content, options),

@@ -3,7 +3,7 @@ export class CreateUserDto {
   email: string;
   password: string;
   username: string;
-  avator?: string;
+  avatar?: string;
   role?: number;
   createTime?: string;
   updateTime?: number;

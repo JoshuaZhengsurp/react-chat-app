@@ -10,8 +10,40 @@ model User {
   username   String   @db.VarChar(24)
   email      String   @unique
   password   String
-  avator     String?  @default("")
+  avatar     String?  @default("")
   role       Int      @default(0)
+  createTime DateTime @default(dbgenerated("NOW()")) @db.DateTime
+  updateTime DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
+}
+
+// TODO：优化查找
+// 发送者，room类型，具体消息，发送时间, 接收者
+// type：0
+model Message {
+  id       Int      @id @default(autoincrement())
+  sender   Int
+  recevier Int
+  message  String
+  type     Int
+  sendTime DateTime @default(dbgenerated("NOW()")) @db.DateTime
+}
+
+// type: 0, 用户；1, 群聊
+model Contact {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  roomId      Int      @default(-1)
+  lastMessage String
+  type     Int
+  createTime  DateTime @default(dbgenerated("NOW()")) @db.DateTime
+  updateTime  DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
+}
+
+// 聊天的房间号
+model Room {
+  roomId     Int      @id @default(autoincrement())
+  roomName   String
+  avatar     String?  @default("")
   createTime DateTime @default(dbgenerated("NOW()")) @db.DateTime
   updateTime DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.Timestamp(0)
 }
