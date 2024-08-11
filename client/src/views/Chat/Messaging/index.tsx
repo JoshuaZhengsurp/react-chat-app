@@ -1,19 +1,30 @@
-import React, { useContext, useMemo } from "react";
+import { useCallback, useContext, useMemo } from "react";
 import { Loading } from "@/components/Loading";
-import {
-  MessageContain,
-  MessageInput,
-  MessageHeader,
-} from "@/components/Message";
+import { MessageContain } from "./Contain";
+import { MessageHeader } from "./Header";
+import { MessageInput } from "./Input";
 import { Welcome } from "../Welcome";
-import { ChatContext } from "@/views/Chat";
 import style from "./messaging.module.scss";
+import { ChatContext } from "..";
 
 export const Messaging = () => {
-  const { currentChat } = useContext(ChatContext);
+  const { currentChat, curContactId, sendChatRecord } = useContext(ChatContext);
+
   const isWelcome = useMemo(
     () => !Object.keys(currentChat || {}).length,
     [currentChat]
+  );
+
+  const handleEnter = useCallback(
+    async (message: string) => {
+      sendChatRecord &&
+        (await sendChatRecord(
+          message,
+          curContactId || -1,
+          currentChat?.contactee?.id || -1
+        ));
+    },
+    [curContactId]
   );
 
   return (
@@ -22,10 +33,10 @@ export const Messaging = () => {
         <MessageHeader contacteeInfo={currentChat!.contactee!} />
         {currentChat && (
           <>
-            <MessageContain chatRecords={currentChat.chat!}/>
+            <MessageContain chatRecords={currentChat.chat!} />
           </>
         )}
-        <MessageInput />
+        <MessageInput handleEnter={handleEnter} />
       </Loading>
     </div>
   );

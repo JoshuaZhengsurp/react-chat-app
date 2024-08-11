@@ -14,3 +14,7 @@ export const DEFAULT_TOAST_OPTIONS: ToastOptions = {
 };
 
 export const CHAT_APP_USER = "chat-app-user";
+
+// 日韩输入时enter确认也是229
+export const KEY_CODE_CHINESE_INPUT = 229;
+export const KEY_CODE_ENTER = 13;

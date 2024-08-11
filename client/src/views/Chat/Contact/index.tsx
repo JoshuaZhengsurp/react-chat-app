@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
-import { Setting } from "../Setting";
+import { Setting } from "@/components/Setting";
 
 import logo from "@/assets/logov2.png";
 import style from "./contacts.module.scss";
 import { useUserStore } from "@/store";
+import { ChatContext } from "..";
 
 interface ContactProps {
   contacts: Contact[];
-  change: (chat: Contact)=>void;
 }
 
-export const Contact: React.FC<ContactProps> = ({ contacts, change }) => {
+export const Contact: React.FC<ContactProps> = ({ contacts }) => {
+  const userInfo = useUserStore((state) => state.userInfo);
+
   const [currentUserName, setCurrentUserName] = useState("");
   const [currentUserImage, setCurrentUserImage] = useState("");
   const [currentSelected, setCurrentSelected] = useState(-1);
 
-  const userInfo = useUserStore((state)=>state.userInfo);
+  const { selectChatList } = useContext(ChatContext);
 
   useEffect(() => {
     if (userInfo) {
@@ -28,7 +30,7 @@ export const Contact: React.FC<ContactProps> = ({ contacts, change }) => {
 
   const changeCurrentChat = (index: number, contact: Contact) => {
     setCurrentSelected(index);
-    change(contact);
+    selectChatList && selectChatList(contact.contactId);
   };
 
   return (
@@ -47,10 +49,15 @@ export const Contact: React.FC<ContactProps> = ({ contacts, change }) => {
                     index === currentSelected ? style["selected"] : ""
                   }`}
                   key={item?.contactId || index}
-                  onClick={()=>changeCurrentChat(index, item)}
+                  onClick={() => changeCurrentChat(index, item)}
                 >
-                  <img src={ item.contactee?.avatar || item.room?.avatar } alt="avatar" />
-                  <span>{ item?.contactee?.username || item?.room?.roomName }</span>
+                  <img
+                    src={item.contactee?.avatar || item.room?.avatar}
+                    alt="avatar"
+                  />
+                  <span>
+                    {item?.contactee?.username || item?.room?.roomName}
+                  </span>
                 </div>
               );
             })}

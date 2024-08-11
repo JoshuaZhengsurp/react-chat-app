@@ -169,7 +169,7 @@ export const mockContact: Contact[] = [
   },
 ];
 
-export const mockChatList: ChatItem[] = [
+export const mockChatItems: ChatItem[] = [
   {
     contactId: 1,
     userId: 1,
@@ -178,7 +178,7 @@ export const mockChatList: ChatItem[] = [
     message:
       "HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello",
     createTime: 1722691137000,
-    avatar: "/src/assets/avatar2.png",
+    avatar: "/src/assets/logov2.png",
     userName: "Joshua",
   },
   {
@@ -219,7 +219,7 @@ export const mockChatList: ChatItem[] = [
     theme: "#40a920",
     message: "Hello",
     createTime: 1722691137000,
-    avatar: "/src/assets/avatar2.png",
+    avatar: "/src/assets/logov2.png",
     userName: "Joshua",
   },
   {
@@ -229,7 +229,7 @@ export const mockChatList: ChatItem[] = [
     theme: "#40a920",
     message: "Hello",
     createTime: 1722691137000,
-    avatar: "/src/assets/avatar2.png",
+    avatar: "/src/assets/logov2.png",
     userName: "Joshua",
   },
   {
@@ -239,7 +239,7 @@ export const mockChatList: ChatItem[] = [
     theme: "#40a920",
     message: "Hello",
     createTime: 1722691137000,
-    avatar: "/src/assets/avatar2.png",
+    avatar: "/src/assets/logov2.png",
     userName: "Joshua",
   },
   {
@@ -259,7 +259,7 @@ export const mockChatList: ChatItem[] = [
     theme: "#40a920",
     message: "Hello",
     createTime: 1722691137000,
-    avatar: "/src/assets/avatar2.png",
+    avatar: "/src/assets/logov2.png",
     userName: "Joshua",
   },
 ];

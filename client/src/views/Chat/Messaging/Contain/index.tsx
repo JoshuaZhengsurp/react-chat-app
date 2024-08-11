@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useRef } from "react";
 import moment from "moment";
 import { useUserStore } from "@/store/module/user";
 import style from "./contain.module.scss";
@@ -47,21 +47,33 @@ export const MessageContain: React.FC<MessageContainProps> = ({
   chatRecords,
 }) => {
   const userInfo = useUserStore((state) => state.userInfo);
+  const messageContainRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (messageContainRef.current) {
+      messageContainRef.current.scrollTo({
+        behavior: "instant",
+        top: messageContainRef.current.scrollHeight,
+      });
+    }
+  }, [chatRecords]);
+
   return (
-    <div className={style["contain"]}>
-      {chatRecords.map((item) => (
-        <Fragment key={item.contactId}>
-          <Message
-            chatItem={item}
-            isContinuous={false}
-            position={
-              item.userId === userInfo.id
-                ? positionEnum.RIGHT
-                : positionEnum.LEFT
-            }
-          />
-        </Fragment>
-      ))}
+    <div ref={messageContainRef} className={style["contain"]}>
+      {chatRecords &&
+        chatRecords.map((item) => (
+          <Fragment key={item.contactId}>
+            <Message
+              chatItem={item}
+              isContinuous={false}
+              position={
+                item.userId === userInfo.id
+                  ? positionEnum.RIGHT
+                  : positionEnum.LEFT
+              }
+            />
+          </Fragment>
+        ))}
     </div>
   );
 };

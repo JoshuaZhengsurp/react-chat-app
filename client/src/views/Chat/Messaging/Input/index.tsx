@@ -5,13 +5,19 @@ import { EmojiPicker } from "../components/EmojiPicker";
 
 import style from "./input.module.scss";
 import { EmojiClickData } from "emoji-picker-react";
+import { KEY_CODE_ENTER } from "@/config/constant";
+
+interface MessageInputProps {
+  handleEnter?: (message: string) => void;
+}
 
 /**
  * @todo
- * bug：1. 表情会直接插入尾部
- * bug: 2. 选中时会报错
-*/
-export const MessageInput = () => {
+ * 1. bug：表情会直接插入尾部
+ * 2. bug: 选中时会报错(部分浏览器会出现，但不影响)
+ * 3. bug: 中文输入法，正输入，回车确认时，自动发送数据了
+ */
+export const MessageInput: React.FC<MessageInputProps> = ({handleEnter}) => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [message, setMessage] = useState("");
   const inputRef = useRef<HTMLDivElement>(null);
@@ -21,7 +27,7 @@ export const MessageInput = () => {
   };
 
   const handleEmojiSelected = (emoji: EmojiClickData) => {
-    const updatedMessage = (inputRef.current?.innerHTML || '') + emoji.emoji;
+    const updatedMessage = (inputRef.current?.innerHTML || "") + emoji.emoji;
     setMessage(updatedMessage);
     if (inputRef.current) {
       inputRef.current.innerText = updatedMessage; // 同步更新input内容
@@ -37,7 +43,7 @@ export const MessageInput = () => {
 
   // 监听Enter键发送消息
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && e.keyCode === KEY_CODE_ENTER) {
       e.preventDefault();
       sendMessage(message);
     }
@@ -46,7 +52,7 @@ export const MessageInput = () => {
   const sendMessage = (msg: string) => {
     if (msg) {
       console.log(msg);
-      // push msg
+      handleEnter && handleEnter(msg);
       setMessage("");
       inputRef.current && (inputRef.current.innerHTML = "");
     }
@@ -68,7 +74,7 @@ export const MessageInput = () => {
           suppressContentEditableWarning
           ref={inputRef}
           data-placeholder="Message"
-          onInput={(e)=>handleInputChange(e)}
+          onInput={(e) => handleInputChange(e)}
           onKeyDown={handleKeyDown}
         />
         <button

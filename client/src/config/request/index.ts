@@ -7,8 +7,9 @@ import config, {
 } from "./defaultConfig";
 import { Response } from "./type";
 import { toToastError } from "@/utils/toast";
+
 /**
- * @todo 有些过度封装了，需要简洁下
+ * @todo 过度封装了，需要简洁下
  */
 
 function useRequest(): AxiosInstance {
