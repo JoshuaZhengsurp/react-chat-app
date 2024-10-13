@@ -10,7 +10,7 @@ const appOptions = {
 };
 const appVersion = process.env.APP_SERVER_VERSION || 'x.x.x';
 
-async function bootstrap() {
+async function bootstrap() {  
   const app = await NestFactory.create(AppModule, appOptions);
   const port = 4000;
   app.enableCors({

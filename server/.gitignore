@@ -36,3 +36,6 @@ lerna-debug.log*
 
 # lock file
 pnpm-lock.yaml
+
+# prisma
+/prisma/migrations

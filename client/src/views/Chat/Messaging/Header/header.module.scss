@@ -1,0 +1,14 @@
+.message-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.8rem;
+    width: 100%;
+    font-weight: bold;
+    height: 6rem;
+    background-color: #080420;
+    img {
+        height: 4rem;
+        border-radius: 50%;
+    }
+}

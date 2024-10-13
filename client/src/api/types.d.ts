@@ -13,3 +13,7 @@ export interface SetAvatarReq {
   img: string;
   [propName in string]: unknown;
 }
+
+export interface GetChatListItemReq {
+  contactId: number;
+}

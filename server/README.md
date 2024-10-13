@@ -69,4 +69,15 @@ npx nest g resource [MODULE NAME]
 
 3. mysql
    ````
-   
+  
+
+
+
+
+## Problem
+getAllAndOverride
+
+
+## gain
+1. how to use prisma
+2. how to build auth

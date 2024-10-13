@@ -1,35 +1,30 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, HttpException, HttpStatus, Req } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User as UserModel } from '@prisma/client';
 import { ApiTags } from '@nestjs/swagger';
 import { Prisma } from '@prisma/client';
+import { exclude } from 'src/utils/exclude';
 
 // TODO 拆分出auth模块
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+    constructor(private readonly userService: UserService) {}
 
-  @Post('create')
-  @ApiTags('创建用户账号')
-  create(@Body() createUserDto: Prisma.UserCreateInput) {
-    return this.userService.create(createUserDto);
-  }
+    @Get('/info')
+    async getUserInfo(@Req() request) {
+        return {
+            result: 1,
+            data: exclude(request.user, ['password']),
+        };
+    }
 
-  @Get()
-  findAll() {
-    return this.userService.findAll();
-  }
+    @Get()
+    findOne(@Param('id') id: string) {
+        return this.userService.findOne({ id: Number(id) });
+    }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userService.findOne({ id: Number(id) });
-  }
-
-  @Post('update/:id')
-  async updateUserInfo(
-    @Body() data: Prisma.UserUpdateInput,
-    @Param('id') id: string,
-  ): Promise<UserModel> {
-    return this.userService.update({ id: Number(id) }, data);
-  }
+    @Post('update/:id')
+    async updateUserInfo(@Body() data: Prisma.UserUpdateInput, @Param('id') id: string): Promise<UserModel> {
+        return this.userService.update({ id: Number(id) }, data);
+    }
 }
