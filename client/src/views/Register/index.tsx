@@ -1,9 +1,9 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "@/assets/logov2.png";
 import style from "./Register.module.scss";
 import { toToast, toToastError, toToastSuccess } from "@/utils/toast";
-import { createAccount } from "@/api/module/user";
+import { createAccount } from "@/api/module/auth";
 
 interface RigisterForm {
   username: string;
@@ -19,20 +19,23 @@ export default function Register() {
     password: "",
     confirmPassword: "",
   });
+  const navigate = useNavigate();
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     if (handleValidation()) {
-      try{
+      try {
         const { email, password, username } = formInfo;
         const res = await createAccount({ password, email, username });
-        if(res.result === 1) {
-          toToastSuccess('success create account');
+        console.log("res", res);
+        if (res.result === 1) {
+          toToastSuccess("success create account");
+          setTimeout(() => navigate("/login"), 100);
         } else {
-          toToastError('create account faild');
+          toToastError(res.message);
         }
       } catch {
-        toToastError('create account faild');
+        toToastError("create account faild");
       }
     }
   };

@@ -8,10 +8,12 @@
     -moz-user-select: none;
     user-select: none;
 
+    padding-right: 0.3rem;
+
     &::-webkit-scrollbar {
         width: 0;
     }
-    padding-right: 0.3rem;
+    
 
     &:hover {
         padding-right: 0rem;

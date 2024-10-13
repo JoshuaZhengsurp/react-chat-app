@@ -6,7 +6,6 @@ import config, {
   cancelRequest,
 } from "./defaultConfig";
 import { Response } from "./type";
-import { toToastError } from "@/utils/toast";
 
 /**
  * @todo 过度封装了，需要简洁下
@@ -25,13 +24,11 @@ function useRequest(): AxiosInstance {
   service.defaults.headers.delete["Content-Type"] = config.defaultHeaders;
 
   service.interceptors.request.use(defaultRequestInterceptor, (error) => {
-    toToastError(error);
-    return Promise.reject(error);
+    return error;
   });
 
   service.interceptors.response.use(defaultResponseInterceptorRes, (error) => {
-    toToastError(error);
-    return Promise.reject(error);
+    return error?.response?.data || {};
   });
 
   return service;

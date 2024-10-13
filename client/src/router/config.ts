@@ -16,6 +16,7 @@ export const CHAT = "/"
 export const LOGIN = "/login";
 export const REGISTER = "/register";
 export const AVATAR = "/avatar"; 
+
 export const ROUTER_WHITE_LIST: RouteList = {
   [CHAT]: {
     pathName: CHAT,
